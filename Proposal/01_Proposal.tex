@@ -1,0 +1,82 @@
+\documentclass[sigconf]{acmart}
+
+% \renewcommand\footnotetextcopyrightpermission[1]{} % removes footnote with conference information in first column
+\pagestyle{fancy} % removes running headers
+
+\setlength{\parskip}{0pt}
+\setlength{\parsep}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\topskip}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\topsep}{0pt}
+\setlength{\partopsep}{0pt}
+%\linespread{0.95}
+\usepackage{mdwlist}
+
+\usepackage{amsmath}
+\fancyhead{}
+\settopmatter{printacmref=false, printfolios=false}
+% Copyright
+\setcopyright{none}
+% \setcopyright{acmcopyright}
+% \setcopyright{acmlicensed}
+% \setcopyright{rightsretained}
+% \setcopyright{usgov}
+% \setcopyright{usgovmixed}
+% \setcopyright{cagov}
+% \setcopyright{cagovmixed}
+
+\settopmatter{printacmref=false} % Removes citation information below abstract
+\begin{document}
+\title{Query refinement: type aware approach }
+\author{Zahra Taherikhonakdar}
+% \authornote{Laboratory for Systems, Software and Semantics (LS$^3$)}
+%\orcid{1234-5678-9012}
+\affiliation{
+  \institution{University of Windsor}
+%   \streetaddress{P.O. Box 1212}
+%   \city{Toronto} 
+%   \state{ON} 
+%   \country{Canada} 
+%   \postcode{43017-6221}
+}
+\email{taherik@uwindsor.ca}
+\author{Aaditya Pradipbhai Parekh}
+% \authornotemark[1]
+\orcid{0000-0002-6033-6564}
+\affiliation{
+ \institution{University of Windsor}
+%   \city{Fredericton} 
+%   \state{NB} 
+%   \country{Canada} 
+}\email{parekh23@uwindsor.ca}
+
+\begin{abstract}
+Returning relevant documents based on the user's initial query is a major challenge for search engines. The user's initial query is ambiguous for search engines as it is usually short, has a different meaning, and the query term does not represent the user's search intent. One of the existing solutions to overcome this limitation is query refinement in order to enhance the retrieval performance by improving document ranking and obtaining additional relevant documents. The user's query has different aspects/types. Knowing the different types of the query would result in reducing initial query ambiguity and better understating the user's search intent. In this proposal, we consider different query types and evaluate the different query refinement techniques based on them to select the appropriate refining methods. This would result in information retrieval(IR) methods improvement and the user's search satisfaction.
+\end{abstract}
+
+\keywords{Query Refinement, Query Types, Information retrieval}
+\maketitle
+
+\section{Introduction}
+Considering query types would help search engines to better understand the user's search intent. Border \cite{broder2002taxonomy} divided web search queries into three categories, namely: navigational, informational, and transactional queries. If the user wants to find specific information on a specific topic, the query is named informational query. These queries usually result in a set of documents rather than just one suitable result. With navigational queries, the user wants to find a certain webpage that he/she is already familiar with or thinks that such a webpage exists. Searching for a person or company homepage is considered a navigational query. Transactional queries result in Web sites where doing further interaction is necessary. Downloading music or file, purchasing a product are examples of transactional queries.
+
+Santos et al. \cite{zhanargoverse} considering informational and navigational query types using the TREC 2009 data set \cite{clarke2009overview} to infer the intent of the query. They focus on selecting suitable retrieval models for different query types to improve the diversification in results. Researchers try to define different types of queries in different domains to increase IR performance and also increase diversity in retrieving results. Vallet et al. \cite{vallet2008inferring} proposed the method to predict important types based on informational queries. They introduce the top three query types in the informational query category, namely: country, organization, events. They claim that this would increase the performance of the informational query search. 
+
+
+\section{Motivation}
+In this research proposal, we propose to consider query types in query refinement to improve IR performance. We use the TREC 2009 data set \cite{clarke2009overview} and use different query refinement methods (e.g. tagmee, wordnet) for all three query types in the data set. Using metrics (e.g. NDCG) we would evaluate the IR performance by our approach. Based on the evaluation, the appropriate query refinement method is considered for each query type. To be specific, our proposal tries to find the best possible answer for this question "how to expand the user's initial query given the type of this query". We expected selecting an appropriate query refinement method for each query type improves the IR performance in terms of the relatedness of retrieved documents.
+
+\subsection{Motivating Example}
+Assume that the user's initial query is 'led zeppelin' (an English rock band). The user could have different intentions like downloading songs, the homepage of bands, and searching biography of the band. These intentions represent transactional, navigational, and informational query types, respectively. Knowing the query intention, we could select the appropriate query refinement method to retrieve related documents and enhance the user's search satisfaction. For instance, we could conclude that the refinement of the 'led zeppelin' would be improved by applying a query refinement method suitable for the transactional query.
+
+\section{Problem Definition}
+Given a set of queries $\mathcal{Q}={q_1, q_2,..,q_n}$, we classify them into the different types of query $\mathcal{T}={t_1, t_2,t_3}$. Given the different query suggestion methods $\mathcal{M}={m_1, m_2, ..,m_n}$, we select the top three methods for each query types based on the evaluation metric like NDCG.
+
+\section{Team Justification}
+Zahra and Aaditya are both interested in the area of web search. Although we will participate in all parts of the project, the research and writing section would be by Zahra since her research domain is in this area, and implementing code would be by Aaditya since he has Python programming knowledge. 
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{bibliography.bib} 
+
+\end{document}
+
