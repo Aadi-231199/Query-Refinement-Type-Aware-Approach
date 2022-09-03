@@ -1,0 +1,90 @@
+\documentclass[sigconf]{acmart}
+% Cleaning 
+\pagestyle{fancy} % removes running headers
+\settopmatter{printacmref=false} % Removes citation information below abstract
+\renewcommand\footnotetextcopyrightpermission[1]{} % removes footnote with conference information in first column
+\pagestyle{plain} % removes running headers
+\fancyhead{}
+\settopmatter{printacmref=false, printfolios=false}
+% Copyright
+\setcopyright{none}
+% \setcopyright{acmcopyright}
+% \setcopyright{acmlicensed}
+% \setcopyright{rightsretained}
+% \setcopyright{usgov}
+% \setcopyright{usgovmixed}
+% \setcopyright{cagov}
+% \setcopyright{cagovmixed}
+\settopmatter{printacmref=false} % Removes citation information below abstract
+\acmDOI{}
+
+
+\setlength{\parskip}{0pt}
+\setlength{\parsep}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\topskip}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\topsep}{0pt}
+\setlength{\partopsep}{0pt}
+%\linespread{0.95}
+\usepackage{mdwlist}
+\usepackage{amsmath}
+\usepackage{tabularx}
+
+\begin{document}
+\title{Query refinement: type aware approach}
+\author{Zahra Taherikhonakdar}
+% \authornote{Laboratory for Systems, Software and Semantics (LS$^3$)}
+%\orcid{1234-5678-9012}
+\affiliation{
+  \institution{University of Windsor}
+%   \streetaddress{P.O. Box 1212}
+%   \city{Toronto} 
+%   \state{ON} 
+%   \country{Canada} 
+%   \postcode{43017-6221}
+}
+\email{taherik@uwindsor.ca}
+\author{Aaditya Pradipbhai Parekh}
+% \authornotemark[1]
+\orcid{0000-0002-6033-6564}
+\affiliation{
+ \institution{University of Windsor}
+%   \city{Fredericton} 
+%   \state{NB} 
+%   \country{Canada} 
+}\email{parekh23@uwindsor.ca}
+\begin{abstract}
+This paper provides a concise overview of the query reformulation, the history of query reformulation and state of the art methods in this domain.
+\end{abstract}
+\vspace{-7pt}
+\keywords{Query Refinement, Query Types, Information retrieval}
+\maketitle
+
+%%----------Chapter 2------------------------------------------
+\vspace{-3pt}
+\section{Query reformulation}
+A web search does not yield relevant results. Because, first, the user’s initial query consists of keywords that may be related to multiple topics. For example, the word ‘python’ refers to the language programming and the snake. Second, the query could be too short to apprehend what the user is looking for. Third, the users are often not sure about what they are looking for until they see the results because they just begin the exploration. Modern search engines use query reformulation to assist users in getting their intended search results to address their information needs. In query reformulation, the input query would be changed by deleting/changing/adding related terms. Query reformulation can be used in query suggestions to help users reformulate their queries to achieve desirable results. It can also be used by search engines to refine the input query without noticing the user and return related results. In this paper, we used query reformulation/suggestion/refinement interchangeably.  
+\vspace{-3pt}
+\subsection{History}
+Query refinement was first used in 1960 by Maron, and Kuhns \cite{maron1960relevance} as a new technique for literature indexing and searching in a mechanized library system. In 1971, Rocchio \cite{rocchio1971relevance} developed a relevance feedback algorithm as a method for query reformulation and is used for automatic document processing and text categorization by information retrieval (IR) systems. In this method, the user gives feedback on the retrieved documents based on the initial query by indicating the relevance of the results. Then, the user’s feedback is incorporated into the information retrieval process to improve the final result. Later, Rocchio's work were extended in new techniques like collection-based term co-occurrence and cluster-based information retrieval \cite{jones1971automatic,jardine1971use} and automatic text processing \cite{salton1989automatic}. These works were developed before the advent of search engines in the 1990s and social media in the early 2000s. In this era, huge amounts of data started being published on the web and social media, which has continued to grow at an accelerating rate until today. Although there are a huge amount of data, users tend to use short queries for searching on the web or social networks. This increases the queries ambiguity and the necessity of query reformulation. Nowadays, query reformulation techniques are used in question answering systems, web, social media, desktop, and email searches \cite{pal2015exploring}.
+
+\section{Prior Work}
+Several query suggestion models have been introduced to overcome the major challenge in query suggestion which is understanding the real user’s search intent for predicting the next query. In this context, several studies used the ”wisdom of crowds” by analyzing the search log of a user (frequency and popularity of last queries). As an example, Huang et al. \cite{huang2003relevant} considered the query co-occurrences to suggest the next query. Although, query suggestion models based on co-occurrence have some issues like data sparsity and the inability to cover rare or unseen data. This approach can not be used in a specific area where there is a wide range of possible queries and systems are rarely used, like academic search \cite{lankinen2016character}. To reduce initial query ambiguity using query reformulation, researchers try to take advantage of different information, like user's search log information, user's social networks information, and query types. In this paper, we consider different query types and evaluate the different query refinement techniques based on them to select the appropriate refining methods. This would result in information retrieval(IR) methods improvement and the user's search satisfaction. In this section, we investigate recent works in query reformulation to show that considering related data (e.g., search log information, user's social networks information) in initial query would improve IR performance as it helps search engines to better understand the users' original query.
+\vspace{-3pt}
+\subsection{search log in query reformulation}
+Many works have been conducted to take advantage of users' search log to understand users' search intent. Chen et al. \cite{chen2017personalized} proposed the Personalized Query Suggestion Diversification (PQSD) model, using the AOL data set \cite{pass2006picture}. This model combines personalization and diversification. The proposed model ensures that suggested queries are close to a user's specific search intent. Ahmad et al. \cite{ahmad2019context} identified users' search context to improve query suggestion and document ranking. To identify the search context, they consider users' previous queries and document clicks (users feedback) in the search log. To do this, they consider previous queries related to a search task in the search log and consider it as a search session. Using AOL data set, Fiorini et al. \cite{fiorini2018personalized} proposed new approaches in neural Query Auto-Completion (QAC) to address the limitations of previous methods. This paper integrated personalization and time-sensitive information in neural QAC to address the inability of the previous methods to predict unseen queries. Dehghani et al. \cite{dehghani2017learning} used the sequence-to-sequence(seq2seq) models and proposed a new architecture to generate query suggestions. The author detects two main problems in existing models. First, directly employing the seq2seq model would lead to losing information at a query level because this model considers a query like a sequence of words. These models are unable to handle out-of-vocabulary words (OOV: terms that are not part of the normal lexicon found in a natural language processing environment). Moreover, these models are less likely to generate very low-frequency words. The proposed model overcome previous models short-comes.
+\vspace{-3pt}
+\subsection{social information in query reformulation}
+With the advent of social networks, users could communicate with each other and share data in form of text, photos, videos on social networks. Moreover, users could share their opinion by retweets, likes, comments. This sharing of information and opinions results in producing a huge amount of data. Researches take advantage of this information in query suggestions to help users to address their information needs \cite{konstas2009social, ma2011recommender}. Flora Amato et al. \cite{amato2019sos} proposed a state-of-the-art method for big data applications to make multimedia suggestions (suggests: photo, video, text) based on different aspects of one or more social media networks of users. They used a subset of the Yahoo Flickr \footnote{https://webscope.sandbox.yahoo.com} Creative Commons 100 Million Data (YFCC100M) multimedia collection (containing about 500,000 images), provided by Yahoo in 2014. The results show that the proposed SOS model by Flora Amato et al. \cite{amato2019sos} outperforms the previous algorithms when the rate of sparsity matrix increases. Dionisis et al. \cite{margaris2018query} proposed techniques for query suggestion on user’s social information on social networks. This method considers both a user’s items choice like browsing and rating and the information from who have an influence on the user on social networks. The results show that in high values, query suggestions can be improved by social information.
+\vspace{-3pt}
+\subsection{Query types in query suggestion}
+Considering query types would help search engines to better understand the user’s search intent. with the am of understanding the need behind the query,  Border \cite{broder2002taxonomy} divided web search queries into three categories, namely: navigational, informational, and transactional queries. He claimed that search engines need to handle all three types ,and an understanding of these categories is essential to the successful web search development. Santos et al. \cite{santos2011intent} considering informational and navigational query types using the TREC 2009 data set \cite{clarke2009overview} to infer the intent of the query. They introduced an intent-aware approach and focused on selecting suitable retrieval models for different query types to improve the diversification in results. Their approach significantly improves the diversification in web search results. Researchers try to define different types of queries in different domains to increase IR performance and also increase diversity in retrieving results. Vallet et al. \cite{vallet2008inferring} proposed the method to predict important types based on informational queries. They introduce the top three query types in the informational query category, namely: country, organization, events. They claim that this would increase the performance of the informational query search. Grbovic et al. \cite{grbovic2015querycategorizr} classified users' queries into several predefined interest categories, such as "finance", "sport", or technology. This allows search engines to better understand user intentions and provide relevant results. They trained the model using more than 12 billion search sessions collected on Yahoo servers. The proposed system achieves \%86 precision with high recall.
+
+In this research proposal, we consider query types in query refinement to improve IR performance. We use the TREC 2009 data set \cite{clarke2009overview} and use different query refinement methods for all three query types in the data set. Using metrics (e.g. NDCG) we would evaluate the IR performance by our approach. Based on the evaluation, the appropriate query refinement method is considered for each query type. We expected using an appropriate query refinement method for each query type improves the IR performance.
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{bibliography.bib} 
+
+\end{document}
+
